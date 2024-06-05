@@ -1,0 +1,15 @@
+fastapi>=0.68.0,<0.69.0
+pydantic>=1.8.0,<2.0.0
+uvicorn[standard]
+openai
+pandas
+google-generativeai
+pinecone-client
+sentence-transformers
+starlette
+itsdangerous
+python-multipart
+pydantic
+markdown
+faiss-gpu
+BeautifulSoup4

@@ -1,0 +1,29 @@
+version: "3.4"
+services:
+  web:
+    image: node:lts
+    container_name: gaming_chatbot_web
+    init: true
+    environment:
+      - NODE_OPTIONS=--max_old_space_size=4096
+    ports:
+      - 5173:5173
+    volumes:
+      - .:/app
+    working_dir: /app/gaming_chatbot_web
+    links:
+      - service
+    command: >
+      bash -c "tail -f"
+
+  service:
+    build: ./gaming_chatbot_service
+    container_name: gaming_chatbot_service
+    restart: unless-stopped
+    volumes:
+      - ./gaming_chatbot_service:/code
+    working_dir: /code
+    ports:
+      - 5080:5080
+    command: >
+      uvicorn app.main:app --host 0.0.0.0 --port 5080 --reload
